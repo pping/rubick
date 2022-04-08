@@ -54,21 +54,21 @@ global.LOCAL_PLUGINS = {
     await pluginInstance.installPluginFromOss(testZipSrc, testPluginInfo.name);
 
     // await pluginInstance.install([plugin.name], { isDev: plugin.isDev });
-    // if (plugin.isDev) {
-    //   // 获取 dev 插件信息
-    //   const pluginPath = path.resolve(
-    //     baseDir,
-    //     "node_modules",
-    //     plugin.name
-    //   );
-    //   const pluginInfo = JSON.parse(
-    //     fs.readFileSync(path.join(pluginPath, "./package.json"), "utf8")
-    //   );
-    //   plugin = {
-    //     ...plugin,
-    //     ...pluginInfo,
-    //   };
-    // }
+    if (plugin.isDev) {
+      // 获取 dev 插件信息
+      const pluginPath = path.resolve(
+        baseDir,
+        "node_modules",
+        plugin.name
+      );
+      const pluginInfo = JSON.parse(
+        fs.readFileSync(path.join(pluginPath, "./package.json"), "utf8")
+      );
+      plugin = {
+        ...plugin,
+        ...pluginInfo,
+      };
+    }
     global.LOCAL_PLUGINS.addPlugin(testPluginInfo);
     return global.LOCAL_PLUGINS.PLUGINS;
   },
