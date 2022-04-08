@@ -11,7 +11,8 @@ let registry;
 let pluginInstance;
 (async () => {
   try {
-    registry = (await API.dbGet({ data: { id: "rubick-localhost-config" } })).data.register;
+    registry = (await API.dbGet({ data: { id: "rubick-localhost-config" } }))
+      .data.register;
     console.log(registry);
     pluginInstance = new PluginHandler({
       baseDir,
@@ -28,23 +29,47 @@ let pluginInstance;
 global.LOCAL_PLUGINS = {
   PLUGINS: [],
   async downloadPlugin(plugin) {
-    await pluginInstance.install([plugin.name], { isDev: plugin.isDev });
-    if (plugin.isDev) {
-      // 获取 dev 插件信息
-      const pluginPath = path.resolve(
-        baseDir,
-        "node_modules",
-        plugin.name
-      );
-      const pluginInfo = JSON.parse(
-        fs.readFileSync(path.join(pluginPath, "./package.json"), "utf8")
-      );
-      plugin = {
-        ...plugin,
-        ...pluginInfo,
-      };
-    }
-    global.LOCAL_PLUGINS.addPlugin(plugin);
+    const testPluginInfo = {
+      name: "rubick-ui-plugin-demo",
+      pluginName: "插件demo",
+      description: "rubick ui 插件demo",
+      author: "muwoo",
+      main: "index.html",
+      logo: "https://static.91jkys.com/attachment/kaer-admin/476bbe78674441bc8c904f6b14e450c8ba71d16f9ffe3e04b75bbd5760c8a738.png",
+      version: "0.0.1",
+      preload: "preload.js",
+      homePage:
+        "https://gitee.com/rubick-center/rubick-ui-plugin-demo/raw/master/README.md",
+      pluginType: "ui",
+      features: [
+        {
+          code: "index",
+          explain: "测试插件",
+          cmds: ["demo", "测试"],
+        },
+      ],
+    };
+    const testZipSrc =
+      "http://47.114.175.150/file/rubick-ui-plugin-demo.tar.gz";
+    await pluginInstance.installPluginFromOss(testZipSrc, testPluginInfo.name);
+
+    // await pluginInstance.install([plugin.name], { isDev: plugin.isDev });
+    // if (plugin.isDev) {
+    //   // 获取 dev 插件信息
+    //   const pluginPath = path.resolve(
+    //     baseDir,
+    //     "node_modules",
+    //     plugin.name
+    //   );
+    //   const pluginInfo = JSON.parse(
+    //     fs.readFileSync(path.join(pluginPath, "./package.json"), "utf8")
+    //   );
+    //   plugin = {
+    //     ...plugin,
+    //     ...pluginInfo,
+    //   };
+    // }
+    global.LOCAL_PLUGINS.addPlugin(testPluginInfo);
     return global.LOCAL_PLUGINS.PLUGINS;
   },
   refreshPlugin(plugin) {
@@ -73,10 +98,7 @@ global.LOCAL_PLUGINS = {
 
     // 存入
     global.LOCAL_PLUGINS.PLUGINS = currentPlugins;
-    fs.writeFileSync(
-      configPath,
-      JSON.stringify(currentPlugins)
-    );
+    fs.writeFileSync(configPath, JSON.stringify(currentPlugins));
     return global.LOCAL_PLUGINS.PLUGINS;
   },
   getLocalPlugins() {
@@ -102,10 +124,7 @@ global.LOCAL_PLUGINS = {
     if (!has) {
       currentPlugins.unshift(plugin);
       global.LOCAL_PLUGINS.PLUGINS = currentPlugins;
-      fs.writeFileSync(
-        configPath,
-        JSON.stringify(currentPlugins)
-      );
+      fs.writeFileSync(configPath, JSON.stringify(currentPlugins));
     }
   },
   updatePlugin(plugin) {
@@ -121,7 +140,9 @@ global.LOCAL_PLUGINS = {
   },
   async deletePlugin(plugin) {
     await pluginInstance.uninstall([plugin.name], { isDev: plugin.isDev });
-    global.LOCAL_PLUGINS.PLUGINS = global.LOCAL_PLUGINS.PLUGINS.filter((p) => plugin.name !== p.name);
+    global.LOCAL_PLUGINS.PLUGINS = global.LOCAL_PLUGINS.PLUGINS.filter(
+      (p) => plugin.name !== p.name
+    );
     fs.writeFileSync(configPath, JSON.stringify(global.LOCAL_PLUGINS.PLUGINS));
     return global.LOCAL_PLUGINS.PLUGINS;
   },

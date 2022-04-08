@@ -6,6 +6,8 @@ import fs from "fs-extra";
 import path from "path";
 import got from "got";
 import fixPath from "fix-path";
+import { execSync } from "child_process";
+import downloadFile from "download";
 
 import spawn from "cross-spawn";
 import { ipcRenderer } from "electron";
@@ -163,6 +165,36 @@ class AdapterHandler {
       });
     });
   }
+
+  private async installPluginFromOss(zipSrc: string, name: string) {
+    try {
+      const plugin_path = `${this.baseDir}/node_modules`;
+      // 基础模版所在目录，如果是初始化，则是模板名称，否则是项目名称
+      const temp_dest = `${plugin_path}/${name}`;
+
+      console.log(plugin_path);
+      // 下载模板
+      if (await existOrNot(temp_dest)) {
+        await execSync(`rm -rf ${temp_dest}`);
+      }
+
+      await downloadFile(zipSrc, plugin_path, { extract: true });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+}
+
+function existOrNot(path) {
+  return new Promise((resolve, reject) => {
+    fs.stat(path, async (err, stat) => {
+      if (err) {
+        resolve(false);
+      } else {
+        resolve(true);
+      }
+    });
+  });
 }
 
 export default AdapterHandler;
