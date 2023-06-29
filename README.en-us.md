@@ -1,19 +1,20 @@
-简体中文 | [English](./README.en-us.md)
+[简体中文](./README.md) | English
 
 <div align= "center">
-<img align="center" width=200 src="https://user-images.githubusercontent.com/138089602/249695042-97e1a9af-b1b1-458f-bb55-95da50171e41.png" />
+<img align="center" width=100 src="https://user-images.githubusercontent.com/138089602/249695042-97e1a9af-b1b1-458f-bb55-95da50171e41.png" />
 </div>
 
 
 
 <div align= "center">
  <h1>Rubick</h1>
+
  <img alt="release" src="https://img.shields.io/github/downloads/rubickCenter/rubick/total" />
  <a href="https://github.com/rubickCenter/rubick/releases">
     <img alt="release" src="https://img.shields.io/github/package-json/v/rubickCenter/rubick" />
  </a>
  <a href="https://github.com/rubickCenter/rubick/actions">
-   <img alt=building src=https://img.shields.io/github/workflow/status/rubickCenter/rubick/Build>
+   <img alt=building src=https://img.shields.io/github/actions/workflow/status/rubickCenter/rubick/main.yml>
  </a>
  <a href="https://github.com/rubickCenter/rubick/blob/master/LICENSE">
     <img alt="npm" src="https://img.shields.io/github/license/rubickCenter/rubick" />
@@ -26,58 +27,60 @@
 </a>
 </div>
 
+Based on electron open source toolbox, free integration of rich plug-ins, to create the ultimate desktop efficiency tool。Rubick is one of the heroes of Dota ，The core skill is the ability to use other heroes as plug-ins，Finished the walk 。Very consistent with the design concept of this tool，So named Rubick。
 
-基于 electron 的开源工具箱，自由集成丰富插件，打造极致的桌面端效能工具。Rubick(拉比克) 是 dota 里面的英雄之一，其核心技能是插件化使用其他英雄的技能，用完即走。非常符合本工具的设计理念，所以取名 Rubick。
-
-## 安装包
+## Installation package
 * [Rubick Mac OS](https://github.com/rubickCenter/rubick/releases)
 * [Rubick Windows](https://github.com/rubickCenter/rubick/releases)
 * [Rubick Linux](https://github.com/rubickCenter/rubick/releases)
 
-## 支持能力
-- [x] 基于 npm 包模式的插件管理，安装插件和安装 npm 包一样简单
-- [x] 支持系统插件，只要在 rubick 运行时，插件可以随时使用
-- [x] 支持全局快捷键设置
-- [x] 支持剪贴板文件搜索
-- [x] 支持搜索本地已安装 app 或 偏好设置
-- [x] 支持 MacOS
-- [x] 支持 Windows
-- [x] 支持 Linux
 
-## 使用文档
+## Feature list
+- [x] Plug-in management based on npm package mode, installing plugins is as easy as installing npm packages.
+- [x] Support system plug-ins, as long as rubick is running, plug-ins can be used at any time.
+- [x] Support global shortcut key settings
+- [x] Support clipboard file search
+- [x] Support searching for locally installed apps or preferences
+- [x] Support MacOS
+- [x] Support Windows
+- [x] Support Linux
+
+
+
+## Docs
 
 [Rubick Docs](https://rubickCenter.github.io/rubick/)
 
 
-## 目前支持能力
-### 1. 搜索系统应用
-支持拼音和缩写来搜索系统安装应用：
+## Core function
+### 1. Search system application
+Support pinyin and abbreviations to search system applications：
 
 ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ba363e8f60f540e6a5c365c4317c4413~tplv-k3u1fbpfcp-watermark.image)
 
-### 2. UI类插件安装
-点击搜索框右侧 `rubick` 图标，进入插件市场，选择所需插件，点击下载按钮即可下载，下载完成后在已安装 tab 下可以找到安装插件。
-安装完成后，输入插件呼起命令即可使用对应插件：
+### 2. UI plug-in installation
+Click the `rubick` icon on the right side of the search box to enter the plug-in market, select the desired plug-in, and click the download button to download. After the download is complete, you can find the installed plug-in under the Installed tab
+
+After the installation is complete, enter the plug-in call up command to use the corresponding plug-in：
 
 ![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7ae45c7ede1f4e3bb7d35ae845e60b64~tplv-k3u1fbpfcp-watermark.image)
 
-### 3. 系统类插件安装
-系统插件安装方式和UI类一样，在插件市场选择`系统分类`，寻找适合自己的系统插件安装即可。
-
+### 3. System plug-in installation
+The system plug-in installation method is the same as that of the UI category. In the plug-in market, select the `system category` and find the system plug-in that suits you to install it.
 ```
-系统插件安装成功后，需要重启 rubick 才能生效
+After the system plug-in is installed successfully, rubick needs to be restarted to take effect
 ```
 
-### 4. 输入框聚焦自动根据剪切板内容匹配插件
-在 `rubick` 内搜索`偏好设置`，然后开启`自动粘贴` 功能，即可匹配剪切板内容自动匹配适合插件进行使用。
+### 4. The input box focus automatically matches the plug-in according to the clipboard content
+Search for `Preferences` in `rubick`, and then turn on the `Auto Paste` function to match the clipboard content and automatically match the plug-in for use.
 
 ![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/01ef50fbfa064ba9a88bebe1531eacd4~tplv-k3u1fbpfcp-watermark.image)
 
-### 更多功能
-如果您还需要更多功能，欢迎来这里给我们提建议：[issues](https://github.com/rubickCenter/rubick/issues) 。
-有价值的想法我们会加入到后期的开发当中。同时也欢迎一起加入共建。
+### More features
+If you need more features, please come here to give us suggestions：[issues](https://github.com/rubickCenter/rubick/issues) 。
+We will add valuable ideas to the later development. At the same time, welcome to join and build together。
 
-## 赞助
+## Sponsor
 开源不容易，如果该项目对你有用的话，可以打赏我们喝杯 coffee ☕️.
 
 <img width=200 src=https://pic1.zhimg.com/80/v2-688385687a37e962fe32daf136139feb_720w.png />
@@ -93,4 +96,3 @@ This project exists thanks to all the people who contribute. [[Contribute](CONTR
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/rubickCenter/rubick/blob/master/LICENSE) file for details.
-
